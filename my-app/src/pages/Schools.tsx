@@ -1,18 +1,17 @@
 import { Link } from "react-router-dom";
-import {
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
-  Typography,
-  Container,
-  Box,
-} from "@mui/material";
+import { Box, Button, Container, Typography } from "@mui/material";
 import BookIcon from "@mui/icons-material/MenuBook";
 
 const Schools = () => {
   return (
-    <Box sx={{ minHeight: "100vh", bgcolor: "background.default" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        bgcolor: "background.default",
+        width: "100%",
+      }}
+    >
       {/* Header */}
       <Box component="header" sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Container
@@ -43,17 +42,12 @@ const Schools = () => {
         </Container>
       </Box>
 
-      {/* Hero Section */}
-      <Box sx={{ py: 8, bgcolor: "primary.light" }}>
-        <Container sx={{ textAlign: "center" }}>
+      <Box>
+        <Container>
           <Typography variant="h3" fontWeight="bold" gutterBottom>
             Hire Outstanding Teachers
           </Typography>
-          <Typography
-            variant="h6"
-            color="text.secondary"
-            sx={{ maxWidth: 600, mx: "auto", mb: 4 }}
-          >
+          <Typography variant="h6" color="text.secondary" sx={{ mb: 4 }}>
             Connect with qualified, passionate educators who are ready to make a
             difference in your school
           </Typography>

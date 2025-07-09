@@ -16,7 +16,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Grid from "@mui/material/Grid";
+
 const TeacherRegister = () => {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -50,7 +50,6 @@ const TeacherRegister = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Show a success message or handle form submission logic
     alert("Teacher profile created!");
   };
 
@@ -102,184 +101,153 @@ const TeacherRegister = () => {
           />
           <form onSubmit={handleSubmit}>
             <CardContent>
-              <Grid container spacing={2}>
-                {/* First & Last Name */}
-                <Grid item xs={12} md={6}>
-                  <TextField
-                    fullWidth
-                    label="First Name"
-                    value={formData.firstName}
-                    onChange={(e) => handleChange("firstName", e.target.value)}
-                    required
-                  />
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <TextField
-                    fullWidth
-                    label="Last Name"
-                    value={formData.lastName}
-                    onChange={(e) => handleChange("lastName", e.target.value)}
-                    required
-                  />
-                </Grid>
+              {/* Name Section */}
+              <Box display="flex" gap={2} mb={2}>
+                <TextField
+                  label="First Name"
+                  value={formData.firstName}
+                  onChange={(e) => handleChange("firstName", e.target.value)}
+                  required
+                  fullWidth
+                />
+                <TextField
+                  label="Last Name"
+                  value={formData.lastName}
+                  onChange={(e) => handleChange("lastName", e.target.value)}
+                  required
+                  fullWidth
+                />
+              </Box>
 
-                {/* Email & Phone */}
-                <Grid item xs={12} md={6}>
-                  <TextField
-                    fullWidth
-                    label="Email"
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => handleChange("email", e.target.value)}
-                    required
-                  />
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <TextField
-                    fullWidth
-                    label="Phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={(e) => handleChange("phone", e.target.value)}
-                    required
-                  />
-                </Grid>
+              {/* Email & Phone */}
+              <Box display="flex" gap={2} mb={2}>
+                <TextField
+                  label="Email"
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => handleChange("email", e.target.value)}
+                  required
+                  fullWidth
+                />
+                <TextField
+                  label="Phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => handleChange("phone", e.target.value)}
+                  required
+                  fullWidth
+                />
+              </Box>
 
-                {/* Experience */}
-                <Grid item xs={12}>
-                  <FormControl fullWidth>
-                    <InputLabel>Experience Level</InputLabel>
-                    <Select
-                      value={formData.experience}
-                      label="Experience Level"
-                      onChange={(e) =>
-                        handleChange("experience", e.target.value)
-                      }
-                    >
-                      <MenuItem value="0-1">New Teacher (0-1 years)</MenuItem>
-                      <MenuItem value="2-5">Early Career (2-5 years)</MenuItem>
-                      <MenuItem value="6-10">Experienced (6-10 years)</MenuItem>
-                      <MenuItem value="11-20">Veteran (11-20 years)</MenuItem>
-                      <MenuItem value="20+">
-                        Master Teacher (20+ years)
-                      </MenuItem>
-                    </Select>
-                  </FormControl>
-                </Grid>
+              {/* Experience */}
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel>Experience Level</InputLabel>
+                <Select
+                  value={formData.experience}
+                  label="Experience Level"
+                  onChange={(e) => handleChange("experience", e.target.value)}
+                >
+                  <MenuItem value="0-1">New Teacher (0-1 years)</MenuItem>
+                  <MenuItem value="2-5">Early Career (2-5 years)</MenuItem>
+                  <MenuItem value="6-10">Experienced (6-10 years)</MenuItem>
+                  <MenuItem value="11-20">Veteran (11-20 years)</MenuItem>
+                  <MenuItem value="20+">Master Teacher (20+ years)</MenuItem>
+                </Select>
+              </FormControl>
 
-                {/* Grade Level */}
-                <Grid item xs={12}>
-                  <FormControl fullWidth>
-                    <InputLabel>Grade Level</InputLabel>
-                    <Select
-                      value={formData.gradeLevel}
-                      label="Grade Level"
-                      onChange={(e) =>
-                        handleChange("gradeLevel", e.target.value)
-                      }
-                    >
-                      <MenuItem value="pre-k">Pre-K</MenuItem>
-                      <MenuItem value="elementary">Elementary (K-5)</MenuItem>
-                      <MenuItem value="middle">Middle School (6-8)</MenuItem>
-                      <MenuItem value="high">High School (9-12)</MenuItem>
-                      <MenuItem value="college">College/University</MenuItem>
-                      <MenuItem value="adult">Adult Education</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Grid>
+              {/* Grade Level */}
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel>Grade Level</InputLabel>
+                <Select
+                  value={formData.gradeLevel}
+                  label="Grade Level"
+                  onChange={(e) => handleChange("gradeLevel", e.target.value)}
+                >
+                  <MenuItem value="pre-k">Pre-K</MenuItem>
+                  <MenuItem value="elementary">Elementary (K-5)</MenuItem>
+                  <MenuItem value="middle">Middle School (6-8)</MenuItem>
+                  <MenuItem value="high">High School (9-12)</MenuItem>
+                  <MenuItem value="college">College/University</MenuItem>
+                  <MenuItem value="adult">Adult Education</MenuItem>
+                </Select>
+              </FormControl>
 
-                {/* Subject Areas */}
-                <Grid item xs={12}>
-                  <Typography variant="subtitle1" gutterBottom>
-                    Subject Areas (Select all that apply)
-                  </Typography>
-                  <Grid container spacing={1}>
-                    {subjectOptions.map((subject) => (
-                      <Grid item xs={6} md={4} key={subject}>
-                        <FormControlLabel
-                          control={
-                            <Checkbox
-                              checked={formData.subjects.includes(subject)}
-                              onChange={(e) => {
-                                const checked = e.target.checked;
-                                const newSubjects = checked
-                                  ? [...formData.subjects, subject]
-                                  : formData.subjects.filter(
-                                      (s) => s !== subject
-                                    );
-                                handleChange("subjects", newSubjects);
-                              }}
-                            />
-                          }
-                          label={subject}
-                        />
-                      </Grid>
-                    ))}
-                  </Grid>
-                </Grid>
-
-                {/* Certifications */}
-                <Grid item xs={12}>
-                  <TextField
-                    label="Certifications & Licenses"
-                    fullWidth
-                    multiline
-                    minRows={3}
-                    value={formData.certifications}
-                    onChange={(e) =>
-                      handleChange("certifications", e.target.value)
-                    }
-                  />
-                </Grid>
-
-                {/* Bio */}
-                <Grid item xs={12}>
-                  <TextField
-                    label="Professional Summary"
-                    fullWidth
-                    multiline
-                    minRows={4}
-                    value={formData.bio}
-                    onChange={(e) => handleChange("bio", e.target.value)}
-                  />
-                </Grid>
-
-                {/* Availability */}
-                <Grid item xs={12}>
-                  <FormControl fullWidth>
-                    <InputLabel>Availability</InputLabel>
-                    <Select
-                      value={formData.availability}
-                      label="Availability"
-                      onChange={(e) =>
-                        handleChange("availability", e.target.value)
-                      }
-                    >
-                      <MenuItem value="immediately">Immediately</MenuItem>
-                      <MenuItem value="2-weeks">2 weeks notice</MenuItem>
-                      <MenuItem value="month">1 month</MenuItem>
-                      <MenuItem value="semester">Next semester</MenuItem>
-                      <MenuItem value="school-year">Next school year</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Grid>
-
-                {/* Agreement */}
-                <Grid item xs={12}>
+              {/* Subjects */}
+              <Typography variant="subtitle1" gutterBottom>
+                Subject Areas (Select all that apply)
+              </Typography>
+              <Box display="flex" flexWrap="wrap" gap={1} mb={2}>
+                {subjectOptions.map((subject) => (
                   <FormControlLabel
+                    key={subject}
                     control={
                       <Checkbox
-                        checked={formData.agreedToTerms}
-                        onChange={(e) =>
-                          handleChange("agreedToTerms", e.target.checked)
-                        }
-                        required
+                        checked={formData.subjects.includes(subject)}
+                        onChange={(e) => {
+                          const checked = e.target.checked;
+                          const newSubjects = checked
+                            ? [...formData.subjects, subject]
+                            : formData.subjects.filter((s) => s !== subject);
+                          handleChange("subjects", newSubjects);
+                        }}
                       />
                     }
-                    label="I agree to the Terms of Service and Privacy Policy"
+                    label={subject}
                   />
-                </Grid>
-              </Grid>
+                ))}
+              </Box>
+
+              {/* Certifications */}
+              <TextField
+                label="Certifications & Licenses"
+                fullWidth
+                multiline
+                minRows={3}
+                sx={{ mb: 2 }}
+                value={formData.certifications}
+                onChange={(e) => handleChange("certifications", e.target.value)}
+              />
+
+              {/* Bio */}
+              <TextField
+                label="Professional Summary"
+                fullWidth
+                multiline
+                minRows={4}
+                sx={{ mb: 2 }}
+                value={formData.bio}
+                onChange={(e) => handleChange("bio", e.target.value)}
+              />
+
+              {/* Availability */}
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel>Availability</InputLabel>
+                <Select
+                  value={formData.availability}
+                  label="Availability"
+                  onChange={(e) => handleChange("availability", e.target.value)}
+                >
+                  <MenuItem value="immediately">Immediately</MenuItem>
+                  <MenuItem value="2-weeks">2 weeks notice</MenuItem>
+                  <MenuItem value="month">1 month</MenuItem>
+                  <MenuItem value="semester">Next semester</MenuItem>
+                  <MenuItem value="school-year">Next school year</MenuItem>
+                </Select>
+              </FormControl>
+
+              {/* Agreement */}
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={formData.agreedToTerms}
+                    onChange={(e) =>
+                      handleChange("agreedToTerms", e.target.checked)
+                    }
+                    required
+                  />
+                }
+                label="I agree to the Terms of Service and Privacy Policy"
+              />
             </CardContent>
             <CardActions sx={{ px: 3, pb: 3 }}>
               <Button type="submit" variant="contained" size="large" fullWidth>

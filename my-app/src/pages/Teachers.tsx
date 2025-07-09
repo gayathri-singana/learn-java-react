@@ -2,7 +2,6 @@ import {
   AppBar,
   Toolbar,
   Box,
-  Container,
   Typography,
   Button,
   Link,
@@ -22,10 +21,22 @@ import GroupIcon from "@mui/icons-material/Group";
 
 const Teachers = () => {
   return (
-    <Box sx={{ minHeight: "100vh", bgcolor: "background.default" }}>
-      {/* Header */}
+    <Box
+      sx={{
+        minHeight: "100vh",
+        width: "100%",
+        bgcolor: "background.default",
+      }}
+    >
       <AppBar position="static" color="default" elevation={1}>
-        <Toolbar sx={{ justifyContent: "space-between" }}>
+        <Toolbar
+          sx={{
+            justifyContent: "space-between",
+            maxWidth: "1200px",
+            mx: "auto",
+            width: "100%",
+          }}
+        >
           <Stack
             direction="row"
             alignItems="center"
@@ -64,7 +75,7 @@ const Teachers = () => {
         px={2}
         sx={{ background: "linear-gradient(to right, #e3f2fd33, #e3f2fd11)" }}
       >
-        <Container maxWidth="md" sx={{ textAlign: "center" }}>
+        <Box sx={{ maxWidth: "1200px", mx: "auto", textAlign: "center" }}>
           <Typography variant="h4" fontWeight="bold" gutterBottom>
             Find Your Dream Teaching Job
           </Typography>
@@ -80,12 +91,12 @@ const Teachers = () => {
               Browse Jobs
             </Button>
           </Stack>
-        </Container>
+        </Box>
       </Box>
 
       {/* How It Works */}
       <Box py={10} px={2}>
-        <Container>
+        <Box sx={{ maxWidth: "1200px", mx: "auto" }}>
           <Typography
             variant="h4"
             textAlign="center"
@@ -131,12 +142,12 @@ const Teachers = () => {
               </Grid>
             ))}
           </Grid>
-        </Container>
+        </Box>
       </Box>
 
       {/* Features Section */}
       <Box py={10} px={2} sx={{ bgcolor: "grey.100" }}>
-        <Container>
+        <Box sx={{ maxWidth: "1200px", mx: "auto" }}>
           <Typography
             variant="h4"
             textAlign="center"
@@ -185,12 +196,12 @@ const Teachers = () => {
               </Grid>
             ))}
           </Grid>
-        </Container>
+        </Box>
       </Box>
 
       {/* CTA Section */}
       <Box py={10} px={2} textAlign="center">
-        <Container maxWidth="md">
+        <Box sx={{ maxWidth: "1200px", mx: "auto" }}>
           <Typography variant="h4" fontWeight="bold" gutterBottom>
             Ready to Find Your Next Teaching Position?
           </Typography>
@@ -201,13 +212,14 @@ const Teachers = () => {
           <Button variant="contained" size="large" href="/teachers/register">
             Get Started - It's Free
           </Button>
-        </Container>
+        </Box>
       </Box>
 
+      {/* Footer */}
       <Divider />
       <Box py={4} textAlign="center" color="text.secondary">
         <Typography variant="body2">
-          &copy; 2024 TeachConnect. All rights reserved.
+          &copy; 2025 TeachConnect. All rights reserved.
         </Typography>
       </Box>
     </Box>
