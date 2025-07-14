@@ -199,7 +199,7 @@ const Teachers = () => {
         </Box>
       </Box>
 
-      {/* CTA Section */}
+      {/* CTA Section module*/}
       <Box py={10} px={2} textAlign="center">
         <Box sx={{ maxWidth: "1200px", mx: "auto" }}>
           <Typography variant="h4" fontWeight="bold" gutterBottom>
