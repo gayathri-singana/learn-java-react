@@ -6,16 +6,14 @@ import {
   CardHeader,
   CardActions,
   Checkbox,
-  FormControl,
   FormControlLabel,
-  InputLabel,
-  MenuItem,
-  Select,
   TextField,
   Typography,
 } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import CustomSelect from "../Components/Select";
+import MultiSelect from "../Components/MultiSelect";
 
 const TeacherRegister = () => {
   const [formData, setFormData] = useState({
@@ -54,12 +52,17 @@ const TeacherRegister = () => {
   };
 
   return (
-    <Box sx={{ minHeight: "100vh", bgcolor: "background.default" }}>
-      {/* Header */}
+    <Box
+      sx={{
+        width: "100%",
+        px: 10, // horizontal padding
+        py: 5,
+      }}
+    >
       <Box sx={{ borderBottom: 1, borderColor: "divider", py: 2 }}>
         <Box
           sx={{
-            maxWidth: 1200,
+            width: "100%",
             mx: "auto",
             px: 2,
             display: "flex",
@@ -81,7 +84,7 @@ const TeacherRegister = () => {
       </Box>
 
       {/* Form */}
-      <Box sx={{ maxWidth: 800, mx: "auto", px: 2, py: 5 }}>
+      <Box sx={{ width: "100%", mx: "auto", px: 2, py: 5 }}>
         <Typography variant="h4" gutterBottom textAlign="center">
           Create Your Teacher Profile
         </Typography>
@@ -140,61 +143,49 @@ const TeacherRegister = () => {
               </Box>
 
               {/* Experience */}
-              <FormControl fullWidth sx={{ mb: 2 }}>
-                <InputLabel>Experience Level</InputLabel>
-                <Select
-                  value={formData.experience}
+              <Box mb={2}>
+                <CustomSelect
                   label="Experience Level"
-                  onChange={(e) => handleChange("experience", e.target.value)}
-                >
-                  <MenuItem value="0-1">New Teacher (0-1 years)</MenuItem>
-                  <MenuItem value="2-5">Early Career (2-5 years)</MenuItem>
-                  <MenuItem value="6-10">Experienced (6-10 years)</MenuItem>
-                  <MenuItem value="11-20">Veteran (11-20 years)</MenuItem>
-                  <MenuItem value="20+">Master Teacher (20+ years)</MenuItem>
-                </Select>
-              </FormControl>
+                  options={[
+                    "New Teacher (0-1 years)",
+                    "Early Career (2-5 years)",
+                    "Experienced (6-10 years)",
+                    "Veteran (11-20 years)",
+                    "Master Teacher (20+ years)",
+                  ]}
+                  value={formData.experience}
+                  onChange={(val) => handleChange("experience", val)}
+                  placeholder="Select experience"
+                />
+              </Box>
 
               {/* Grade Level */}
-              <FormControl fullWidth sx={{ mb: 2 }}>
-                <InputLabel>Grade Level</InputLabel>
-                <Select
-                  value={formData.gradeLevel}
+              <Box mb={2}>
+                <CustomSelect
                   label="Grade Level"
-                  onChange={(e) => handleChange("gradeLevel", e.target.value)}
-                >
-                  <MenuItem value="pre-k">Pre-K</MenuItem>
-                  <MenuItem value="elementary">Elementary (K-5)</MenuItem>
-                  <MenuItem value="middle">Middle School (6-8)</MenuItem>
-                  <MenuItem value="high">High School (9-12)</MenuItem>
-                  <MenuItem value="college">College/University</MenuItem>
-                  <MenuItem value="adult">Adult Education</MenuItem>
-                </Select>
-              </FormControl>
+                  options={[
+                    "Pre-K",
+                    "Elementary (K-5)",
+                    "Middle School (6-8)",
+                    "High School (9-12)",
+                    "College/University",
+                    "Adult Education",
+                  ]}
+                  value={formData.gradeLevel}
+                  onChange={(val) => handleChange("gradeLevel", val)}
+                  placeholder="Select grade level"
+                />
+              </Box>
 
               {/* Subjects */}
-              <Typography variant="subtitle1" gutterBottom>
-                Subject Areas (Select all that apply)
-              </Typography>
-              <Box display="flex" flexWrap="wrap" gap={1} mb={2}>
-                {subjectOptions.map((subject) => (
-                  <FormControlLabel
-                    key={subject}
-                    control={
-                      <Checkbox
-                        checked={formData.subjects.includes(subject)}
-                        onChange={(e) => {
-                          const checked = e.target.checked;
-                          const newSubjects = checked
-                            ? [...formData.subjects, subject]
-                            : formData.subjects.filter((s) => s !== subject);
-                          handleChange("subjects", newSubjects);
-                        }}
-                      />
-                    }
-                    label={subject}
-                  />
-                ))}
+              <Box mb={2}>
+                <MultiSelect
+                  label="Subject Areas"
+                  options={subjectOptions}
+                  selectedValues={formData.subjects}
+                  onChange={(val) => handleChange("subjects", val)}
+                  placeholder="Select subjects"
+                />
               </Box>
 
               {/* Certifications */}
@@ -220,20 +211,21 @@ const TeacherRegister = () => {
               />
 
               {/* Availability */}
-              <FormControl fullWidth sx={{ mb: 2 }}>
-                <InputLabel>Availability</InputLabel>
-                <Select
-                  value={formData.availability}
+              <Box mb={2}>
+                <CustomSelect
                   label="Availability"
-                  onChange={(e) => handleChange("availability", e.target.value)}
-                >
-                  <MenuItem value="immediately">Immediately</MenuItem>
-                  <MenuItem value="2-weeks">2 weeks notice</MenuItem>
-                  <MenuItem value="month">1 month</MenuItem>
-                  <MenuItem value="semester">Next semester</MenuItem>
-                  <MenuItem value="school-year">Next school year</MenuItem>
-                </Select>
-              </FormControl>
+                  options={[
+                    "Immediately",
+                    "2 weeks notice",
+                    "1 month",
+                    "Next semester",
+                    "Next school year",
+                  ]}
+                  value={formData.availability}
+                  onChange={(val) => handleChange("availability", val)}
+                  placeholder="Select availability"
+                />
+              </Box>
 
               {/* Agreement */}
               <FormControlLabel
